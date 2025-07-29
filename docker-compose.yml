@@ -1,0 +1,40 @@
+
+    services:
+      odoo:
+        image: odoo:18.0
+        platform: linux/amd64
+        depends_on:
+          - db
+        ports:
+          - "8069:8069"
+        volumes:
+          - odoo-web-data:/var/lib/odoo
+          - ./config:/etc/odoo
+          - ./addons:/mnt/extra-addons
+          - ./logs:/var/log/odoo
+        environment:
+          - HOST=db
+          - USER=odoo
+          - PASSWORD=odoo
+        command: odoo -d odoo0 --db_user=odoo --db_password=odoo --db-filter=.* -i base --without-demo=all
+        restart: always
+
+      db:
+        image: postgres:15
+        platform: linux/amd64
+        environment:
+          - POSTGRES_DB=odoo0
+          - POSTGRES_USER=odoo
+          - POSTGRES_PASSWORD=odoo
+        ports:
+          - "5432:5432"
+        volumes:
+          - odoo-db-data:/var/lib/postgresql/data
+        restart: always
+
+    volumes:
+      odoo-web-data:
+        name: odoo-18-0-docker_odoo-web-data
+      odoo-db-data:
+        name: odoo-18-0-docker_odoo-db-data
+    
