@@ -1,6 +1,6 @@
 
 #!/usr/bin/env bash
-
+docker-compose down
 docker-compose up -d --build
 
 # Create logs folder if it does not exist
