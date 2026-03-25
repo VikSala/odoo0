@@ -6,7 +6,7 @@ PROJECT=$(basename "$PWD")
 # --- CONFIGURACIÓN CORREGIDA ---
 CONTAINER_DB="${PROJECT}-db-1"
 CONTAINER_ODOO="${PROJECT}-odoo-1"
-DB_DESTINO="test"
+DB_A_ELIMINAR="test"
 POSTGRES_USER="odoo"
 
 echo "🗑️  Iniciando eliminación completa de la base de datos: $DB_A_ELIMINAR..."
