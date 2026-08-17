@@ -12,11 +12,13 @@ services:
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
       - ./logs:/var/log/odoo
+      - ./:/tmp
+      - ./:/odoo0:ro
     environment:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
-    command: odoo -d odoo0 --db_user=odoo --db_password=odoo --db-filter=.* -i base --without-demo=all
+    command: odoo -d odoo0 --db_user=odoo --db_password=odoo --unaccent --no-database-list -i base --without-demo=all
     restart: always
 
   db:
